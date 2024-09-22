@@ -1,0 +1,52 @@
+<div class="container d-flex flex-column justify-content-center align-items-center" style="min-height: 100vh;">
+    <!-- Título de la empresa -->
+    <div class="mb-4 text-center">
+      <h1 class="display-5 d-none d-md-block">Gestión de Citas</h1>
+      <h1 class="h3 d-md-none">Gestión de Citas</h1>
+      <h3 class="text-muted">Fernández Psicólogos</h3>
+    </div>
+  
+    <!-- Tarjeta de Registro -->
+    <div class="card shadow-lg" style="width: 100%; max-width: 28rem;">
+      <div class="card-body">
+        <h2 class="card-title text-center mb-4">Registro de Paciente</h2>
+        <form (ngSubmit)="onSubmit()" novalidate>
+          <!-- Nombre con ícono -->
+          <div class="input-group mb-3">
+            <span class="input-group-text"><i class="bi bi-person"></i></span>
+            <input type="text" id="nombre" [(ngModel)]="nombre" name="nombre" class="form-control" placeholder="Ingrese su nombre completo" required>
+          </div>
+  
+          <!-- Correo Electrónico con ícono -->
+          <div class="input-group mb-3">
+            <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+            <input type="email" id="email" [(ngModel)]="email" name="email" class="form-control" placeholder="Ingrese su correo electrónico" required>
+          </div>
+  
+          <!-- Contraseña con ícono -->
+          <div class="input-group mb-3">
+            <span class="input-group-text"><i class="bi bi-lock"></i></span>
+            <input [type]="mostrarPassword ? 'text' : 'password'" id="password" [(ngModel)]="password" name="password" class="form-control" placeholder="Cree una contraseña" required>
+            <button type="button" class="btn btn-outline-secondary" (click)="toggleMostrarPassword()">
+              <i [class]="mostrarPassword ? 'bi bi-eye-slash' : 'bi bi-eye'"></i>
+            </button>
+          </div>
+  
+          <!-- Confirmación de Contraseña con ícono -->
+          <div class="input-group mb-3">
+            <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
+            <input type="password" id="confirmPassword" [(ngModel)]="confirmPassword" name="confirmPassword" class="form-control" placeholder="Repita su contraseña" required>
+          </div>
+  
+          <!-- Botón de Registro -->
+          <button type="submit" class="btn btn-primary w-100">Registrar</button>
+  
+          <!-- Enlace a Iniciar Sesión -->
+          <div class="text-center mt-3">
+            <p>¿Ya tienes una cuenta? <a routerLink="/login">Iniciar Sesión</a></p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  

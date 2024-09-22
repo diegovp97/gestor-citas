@@ -1,0 +1,54 @@
+<div class="container d-flex flex-column justify-content-center align-items-center" style="min-height: 100vh;">
+  <!-- Título de la empresa -->
+  <div class="mb-4 text-center">
+    <h1 class="display-5 d-none d-md-block">Gestión de Citas</h1>
+    <h1 class="h3 d-md-none">Gestión de Citas</h1>
+    <h3 class="text-muted">Fernández Psicólogos</h3>
+  </div>
+
+  <!-- Tarjeta de Login -->
+  <div class="card shadow-lg" style="width: 100%; max-width: 28rem;">
+    <div class="card-body">
+      <h2 class="card-title text-center mb-4">Iniciar Sesión</h2>
+      <form (ngSubmit)="onLogin()" novalidate>
+        <!-- Correo Electrónico con ícono -->
+        <div class="input-group mb-3">
+          <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+          <input 
+            type="email" 
+            id="email" 
+            [(ngModel)]="email" 
+            name="email" 
+            class="form-control" 
+            placeholder="Ingrese su correo electrónico" 
+            required 
+            email> <!-- Validación HTML5 y Angular -->
+        </div>
+
+        <!-- Contraseña con ícono -->
+        <div class="input-group mb-3">
+          <span class="input-group-text"><i class="bi bi-lock"></i></span>
+          <input 
+            [type]="mostrarPassword ? 'text' : 'password'" 
+            id="password" 
+            [(ngModel)]="password" 
+            name="password" 
+            class="form-control" 
+            placeholder="Ingrese su contraseña" 
+            required>
+          <button type="button" class="btn btn-outline-secondary" (click)="toggleMostrarPassword()">
+            <i [class]="mostrarPassword ? 'bi bi-eye-slash' : 'bi bi-eye'"></i>
+          </button>
+        </div>
+
+        <!-- Botón de Login -->
+        <button type="submit" class="btn btn-primary w-100">Iniciar Sesión</button>
+
+        <!-- Enlace a Registro -->
+        <div class="text-center mt-3">
+          <p>¿No tienes una cuenta? <a routerLink="/register">Regístrate aquí</a></p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

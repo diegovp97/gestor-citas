@@ -1,0 +1,36 @@
+.card {
+    border-radius: 10px;
+    padding: 2rem;
+    border: none;
+  }
+  
+  h2 {
+    font-size: 1.8rem;
+  }
+  
+  .ngb-datepicker {
+    font-size: 1.2rem; /* Aumenta el tamaño del texto en el calendario */
+  }
+  
+  button {
+    padding: 12px 24px;
+    font-size: 1.2rem;
+  }
+
+  .reservada {
+    background-color: red;
+    color: white;
+    pointer-events: none; /* Evita que se pueda hacer clic */
+  }
+
+  span.reservada {
+    background-color: #f8d7da;
+    color: #721c24;
+    border-radius: 50%;
+  }
+  button[disabled] {
+    background-color: #f8d7da;
+    color: #721c24;
+    border-color: #f5c6cb;
+    cursor: not-allowed;
+  }
