@@ -3,11 +3,12 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap'; // Importar NgbModal y NgbModule
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [FormsModule, CommonModule, RouterLink],
+  imports: [FormsModule, CommonModule, RouterLink, NgbModule], // Añadir NgbModule
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
@@ -16,10 +17,12 @@ export class RegisterComponent {
   email: string = '';
   password: string = '';
   confirmPassword: string = '';
+  mostrarPassword: boolean = false;
 
-  constructor(private router: Router, private http: HttpClient) {} // Inyectar HttpClient correctamente
+  constructor(private router: Router, private http: HttpClient, private modalService: NgbModal) {} // Inyectar NgbModal
 
-  onSubmit() {
+  // Método para registrar el usuario y mostrar el modal de éxito
+  onSubmit(successModal: any) {
     if (this.password !== this.confirmPassword) {
       alert('Las contraseñas no coinciden');
       return;
@@ -30,17 +33,20 @@ export class RegisterComponent {
       email: this.email,
       password: this.password
     }).subscribe(
-      (response: any) => {  // Definir el tipo del parámetro 'response'
+      (response: any) => {
         console.log('Usuario creado exitosamente:', response);
-        this.router.navigate(['/login']);  // Redirigir después del registro exitoso
+
+        // Mostrar el modal de éxito
+        this.modalService.open(successModal).result.then(() => {
+          // Redirigir al iniciar sesión al cerrar el modal
+          this.router.navigate(['/login']);
+        });
       },
-      (error: any) => {  // Definir el tipo del parámetro 'error'
+      (error: any) => {
         console.error('Error al crear el usuario:', error);
       }
     );
   }
-
-  mostrarPassword: boolean = false;
 
   toggleMostrarPassword() {
     this.mostrarPassword = !this.mostrarPassword;

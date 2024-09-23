@@ -1,3 +1,5 @@
+<!-- Template HTML del componente -->
+
 <div class="container d-flex flex-column justify-content-center align-items-center" style="min-height: 100vh;">
   <!-- Título de la empresa -->
   <div class="mb-4 text-center">
@@ -10,7 +12,7 @@
   <div class="card shadow-lg" style="width: 100%; max-width: 28rem;">
     <div class="card-body">
       <h2 class="card-title text-center mb-4">Iniciar Sesión</h2>
-      <form (ngSubmit)="onLogin()" novalidate>
+      <form (ngSubmit)="onLogin(loginSuccessModal, loginErrorModal)" novalidate>
         <!-- Correo Electrónico con ícono -->
         <div class="input-group mb-3">
           <span class="input-group-text"><i class="bi bi-envelope"></i></span>
@@ -52,3 +54,31 @@
     </div>
   </div>
 </div>
+
+<!-- Modal de Éxito -->
+<ng-template #loginSuccessModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Inicio de Sesión</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    ¡Inicio de sesión exitoso!
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="modal.close('Close click')">Cerrar</button>
+  </div>
+</ng-template>
+
+<!-- Modal de Error -->
+<ng-template #loginErrorModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Error</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    Inicio de sesión fallido. Por favor, verifique su correo electrónico y contraseña.
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="modal.close('Close click')">Cerrar</button>
+  </div>
+</ng-template>
